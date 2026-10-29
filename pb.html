@@ -1,0 +1,1606 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#102b4e">
+
+    <title>ABC College of Engineering</title>
+
+    <style>
+        /* ========== GLOBAL STYLES ========== */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --navy: #102b4e;
+            --navy-dark: #091c34;
+            --blue: #176b87;
+            --gold: #ffd166;
+            --background: #f4f7fb;
+            --text: #25364a;
+            --muted: #64748b;
+            --white: #ffffff;
+            --shadow: 0 8px 25px rgba(16, 43, 78, 0.09);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: var(--background);
+            color: var(--text);
+            line-height: 1.7;
+            min-height: 100vh;
+        }
+
+        button, a {
+            font: inherit;
+        }
+
+        button {
+            cursor: pointer;
+        }
+
+        a {
+            color: inherit;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        /* ========== HEADER ========== */
+        .site-header {
+            color: white;
+            background: linear-gradient(120deg, var(--navy-dark), var(--blue));
+            padding: 23px 5%;
+        }
+
+        .header-inner {
+            max-width: 1250px;
+            margin: auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .college-brand {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .college-logo {
+            width: 60px;
+            height: 60px;
+            border: 2px solid rgba(255, 209, 102, 0.8);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            background: rgba(255, 255, 255, 0.08);
+            flex-shrink: 0;
+        }
+
+        .college-brand h1 {
+            font-size: clamp(19px, 3vw, 28px);
+            line-height: 1.3;
+        }
+
+        .college-brand p {
+            color: #dbeafe;
+            font-size: 13px;
+            margin-top: 4px;
+            letter-spacing: 1px;
+        }
+
+        .header-badge {
+            text-align: right;
+            color: #fef3c7;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .header-badge span {
+            display: block;
+            color: #dbeafe;
+            font-weight: normal;
+            margin-top: 4px;
+        }
+
+        /* ========== NAVIGATION ========== */
+        .main-nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: var(--navy-dark);
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+        }
+
+        .nav-inner {
+            max-width: 1250px;
+            margin: auto;
+            padding: 0 12px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .nav-link {
+            display: block;
+            padding: 16px 13px;
+            text-decoration: none;
+            color: #e2e8f0;
+            font-size: 13px;
+            font-weight: 700;
+            border-bottom: 3px solid transparent;
+            transition: 0.25s;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--gold);
+            background: rgba(255, 255, 255, 0.07);
+            border-bottom-color: var(--gold);
+        }
+
+        .nav-link:focus-visible,
+        .btn:focus-visible {
+            outline: 3px solid var(--gold);
+            outline-offset: 3px;
+        }
+
+        /* ========== PAGE NAVIGATION SYSTEM ========== */
+        .page {
+            display: none;
+            min-height: 65vh;
+            animation: pageAppear 0.35s ease;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        @keyframes pageAppear {
+            from {
+                opacity: 0;
+                transform: translateY(8px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ========== HOME BANNER ========== */
+        .hero {
+            position: relative;
+            overflow: hidden;
+            color: white;
+            text-align: center;
+            padding: 100px 20px;
+            background:
+                radial-gradient(circle at 85% 15%,
+                    rgba(255, 209, 102, 0.18), transparent 25%),
+                linear-gradient(125deg, #102b4e, #176b87, #287ca1);
+        }
+
+        .hero-content {
+            max-width: 900px;
+            margin: auto;
+        }
+
+        .hero-label {
+            display: inline-block;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 30px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 7px 16px;
+            color: #ffdf8a;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            margin-bottom: 22px;
+        }
+
+        .hero h2 {
+            font-size: clamp(34px, 6vw, 58px);
+            line-height: 1.18;
+            margin-bottom: 20px;
+        }
+
+        .hero h2 span {
+            color: var(--gold);
+        }
+
+        .hero p {
+            max-width: 680px;
+            margin: 0 auto 28px;
+            color: #e2e8f0;
+            font-size: 17px;
+        }
+
+        .hero-actions {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        /* ========== BUTTONS ========== */
+        .btn {
+            display: inline-block;
+            padding: 12px 23px;
+            border: none;
+            border-radius: 7px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 700;
+            transition: 0.25s;
+        }
+
+        .btn-gold {
+            background: var(--gold);
+            color: var(--navy);
+        }
+
+        .btn-gold:hover {
+            background: #ffe39a;
+            transform: translateY(-2px);
+        }
+
+        .btn-white {
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .btn-white:hover {
+            background: white;
+            color: var(--navy);
+        }
+
+        .btn-blue {
+            background: var(--blue);
+            color: white;
+        }
+
+        .btn-blue:hover {
+            background: #10546c;
+            transform: translateY(-2px);
+        }
+
+        /* ========== LAYOUT ========== */
+        .container {
+            max-width: 1150px;
+            padding: 55px 22px;
+            margin: auto;
+        }
+
+        .page-heading {
+            text-align: center;
+            margin-bottom: 38px;
+        }
+
+        .page-heading .eyebrow {
+            color: var(--blue);
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .page-heading h2 {
+            font-size: clamp(28px, 4vw, 39px);
+            color: var(--navy);
+            line-height: 1.25;
+            margin: 9px 0 12px;
+        }
+
+        .page-heading p {
+            max-width: 700px;
+            margin: auto;
+            color: var(--muted);
+        }
+
+        .section-title {
+            font-size: 27px;
+            color: var(--navy);
+            margin-bottom: 10px;
+        }
+
+        .section-description {
+            color: var(--muted);
+            margin-bottom: 25px;
+        }
+
+        /* ========== STATISTICS ========== */
+        .stats {
+            max-width: 1000px;
+            margin: -1px auto 0;
+            padding: 28px 22px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .stat-card {
+            background: white;
+            border-radius: 12px;
+            padding: 24px 15px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            border: 1px solid #e8eef5;
+        }
+
+        .stat-card strong {
+            display: block;
+            font-size: 31px;
+            color: var(--blue);
+        }
+
+        .stat-card span {
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        /* ========== CARD GRIDS ========== */
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 23px;
+        }
+
+        .card {
+            background: white;
+            border: 1px solid #e9eef5;
+            border-radius: 13px;
+            padding: 27px 23px;
+            box-shadow: var(--shadow);
+            transition: transform 0.25s, box-shadow 0.25s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 13px 30px rgba(16, 43, 78, 0.13);
+        }
+
+        .card-icon {
+            width: 62px;
+            height: 62px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #e7f2fa;
+            border-radius: 13px;
+            font-size: 31px;
+            margin-bottom: 18px;
+        }
+
+        .card h3 {
+            color: var(--navy);
+            font-size: 19px;
+            margin-bottom: 9px;
+        }
+
+        .card p {
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        .card .card-meta {
+            display: inline-block;
+            margin-top: 17px;
+            padding: 5px 11px;
+            background: #e9f5f8;
+            color: var(--blue);
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 800;
+        }
+
+        /* ========== ABOUT PAGE ========== */
+        .about-layout {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 30px;
+            align-items: start;
+        }
+
+        .about-panel {
+            padding: 32px;
+            border-radius: 14px;
+            background: white;
+            box-shadow: var(--shadow);
+        }
+
+        .about-panel h3 {
+            color: var(--navy);
+            font-size: 23px;
+            margin-bottom: 15px;
+        }
+
+        .about-panel p {
+            color: var(--muted);
+            margin-bottom: 14px;
+        }
+
+        .mission-list {
+            display: grid;
+            gap: 14px;
+        }
+
+        .mission-item {
+            background: #f0f6fc;
+            padding: 16px;
+            border-radius: 9px;
+        }
+
+        .mission-item strong {
+            display: block;
+            color: var(--navy);
+            margin-bottom: 4px;
+        }
+
+        .mission-item p {
+            font-size: 13px;
+            margin: 0;
+        }
+
+        /* ========== FACULTY ========== */
+        .faculty-card {
+            text-align: center;
+        }
+
+        .faculty-avatar {
+            width: 85px;
+            height: 85px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 17px;
+            background: #e7f2fa;
+            border: 3px solid #d2e8f5;
+            border-radius: 50%;
+            font-size: 40px;
+        }
+
+        .faculty-card .designation {
+            color: var(--blue);
+            font-weight: 700;
+            margin-top: 5px;
+        }
+
+        /* ========== ADMISSIONS ========== */
+        .admission-banner {
+            background: linear-gradient(120deg, #102b4e, #176b87);
+            color: white;
+            border-radius: 14px;
+            padding: 32px;
+            text-align: center;
+            margin-bottom: 32px;
+        }
+
+        .admission-banner h3 {
+            font-size: 25px;
+            margin-bottom: 10px;
+        }
+
+        .admission-banner p {
+            color: #e2e8f0;
+            margin-bottom: 18px;
+        }
+
+        .step-number {
+            width: 43px;
+            height: 43px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: var(--gold);
+            color: var(--navy);
+            font-weight: 800;
+            font-size: 18px;
+            margin-bottom: 17px;
+        }
+
+        /* ========== CONTACT ========== */
+        .contact-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+        }
+
+        .contact-panel {
+            background: white;
+            padding: 30px;
+            border-radius: 13px;
+            box-shadow: var(--shadow);
+        }
+
+        .contact-panel h3 {
+            color: var(--navy);
+            font-size: 22px;
+            margin-bottom: 20px;
+        }
+
+        .contact-item {
+            display: flex;
+            gap: 13px;
+            margin-bottom: 21px;
+            align-items: flex-start;
+        }
+
+        .contact-icon {
+            width: 43px;
+            height: 43px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #e7f2fa;
+            border-radius: 10px;
+            font-size: 21px;
+        }
+
+        .contact-item strong {
+            display: block;
+            color: var(--navy);
+        }
+
+        .contact-item p,
+        .contact-item a {
+            color: var(--muted);
+            font-size: 14px;
+            overflow-wrap: anywhere;
+        }
+
+        .contact-form {
+            display: grid;
+            gap: 14px;
+        }
+
+        .contact-form label {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--navy);
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #cbd5e1;
+            border-radius: 7px;
+            margin-top: 5px;
+            background: #fbfdff;
+            color: var(--text);
+            font: inherit;
+            font-size: 14px;
+        }
+
+        .contact-form textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            outline: 2px solid #8bc4dc;
+            border-color: var(--blue);
+        }
+
+        .form-note {
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+        /* ========== FOOTER ========== */
+        .site-footer {
+            margin-top: 25px;
+            background: var(--navy-dark);
+            color: #cbd5e1;
+            padding: 30px 20px;
+            text-align: center;
+        }
+
+        .site-footer strong {
+            color: white;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin: 15px 0;
+        }
+
+        .footer-links a {
+            color: #cbd5e1;
+            text-decoration: none;
+            font-size: 13px;
+        }
+
+        .footer-links a:hover {
+            color: var(--gold);
+        }
+
+        .copyright {
+            font-size: 12px;
+            color: #94a3b8;
+            margin-top: 12px;
+        }
+
+        /* ========== RESPONSIVE DESIGN ========== */
+        @media (max-width: 900px) {
+            .cards {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .nav-link {
+                padding: 13px 10px;
+            }
+
+            .about-layout,
+            .contact-layout {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .header-inner {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .college-brand {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .header-badge {
+                text-align: center;
+            }
+
+            .nav-inner {
+                padding: 5px;
+            }
+
+            .nav-link {
+                padding: 9px 8px;
+                font-size: 12px;
+            }
+
+            .hero {
+                padding: 65px 17px;
+            }
+
+            .hero p {
+                font-size: 15px;
+            }
+
+            .container {
+                padding: 38px 16px;
+            }
+
+            .cards,
+            .stats {
+                grid-template-columns: 1fr;
+            }
+
+            .stats {
+                gap: 12px;
+                padding: 20px 16px;
+            }
+
+            .stat-card {
+                padding: 17px;
+            }
+
+            .about-panel,
+            .contact-panel {
+                padding: 22px;
+            }
+
+            .admission-banner {
+                padding: 25px 18px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ========== HEADER ========== -->
+    <header class="site-header">
+        <div class="header-inner">
+
+            <div class="college-brand">
+                <div class="college-logo" aria-hidden="true">🎓</div>
+
+                <div>
+                    <h1>ABC College of Engineering</h1>
+                    <p>KNOWLEDGE • INNOVATION • EXCELLENCE</p>
+                </div>
+            </div>
+
+            <div class="header-badge">
+                YOUR FUTURE STARTS HERE
+                <span>Learn Today. Lead Tomorrow.</span>
+            </div>
+
+        </div>
+    </header>
+
+    <!-- ========== NAVIGATION ========== -->
+    <nav class="main-nav" aria-label="Main navigation">
+        <div class="nav-inner">
+
+            <a href="#home" class="nav-link active"
+               data-page="home" aria-current="page">Home</a>
+
+            <a href="#about" class="nav-link"
+               data-page="about">About</a>
+
+            <a href="#departments" class="nav-link"
+               data-page="departments">Departments</a>
+
+            <a href="#courses" class="nav-link"
+               data-page="courses">Courses</a>
+
+            <a href="#faculty" class="nav-link"
+               data-page="faculty">Faculty</a>
+
+            <a href="#admissions" class="nav-link"
+               data-page="admissions">Admissions</a>
+
+            <a href="#facilities" class="nav-link"
+               data-page="facilities">Facilities</a>
+
+            <a href="#events" class="nav-link"
+               data-page="events">Events</a>
+
+            <a href="#contact" class="nav-link"
+               data-page="contact">Contact</a>
+
+        </div>
+    </nav>
+
+    <main>
+
+        <!-- ========== HOME PAGE ========== -->
+        <section id="home" class="page active">
+
+            <div class="hero">
+                <div class="hero-content">
+
+                    <span class="hero-label">
+                        SHAPING TOMORROW'S LEADERS
+                    </span>
+
+                    <h2>
+                        Welcome to ABC College<br>
+                        <span>Build Your Bright Future</span>
+                    </h2>
+
+                    <p>
+                        Discover quality education, explore innovative
+                        engineering programs, learn from experienced
+                        faculty, and prepare yourself for a successful
+                        professional career.
+                    </p>
+
+                    <div class="hero-actions">
+                        <button class="btn btn-gold"
+                                data-go="admissions">
+                            Apply for Admission →
+                        </button>
+
+                        <button class="btn btn-white"
+                                data-go="about">
+                            Discover Our College
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="stats">
+                <div class="stat-card">
+                    <strong>4+</strong>
+                    <span>Academic Departments</span>
+                </div>
+
+                <div class="stat-card">
+                    <strong>3+</strong>
+                    <span>Programs Offered</span>
+                </div>
+
+                <div class="stat-card">
+                    <strong>100%</strong>
+                    <span>Commitment to Learning</span>
+                </div>
+            </div>
+
+            <div class="container">
+                <div class="page-heading">
+                    <span class="eyebrow">Explore ABC College</span>
+                    <h2>Discover Your Opportunities</h2>
+                    <p>
+                        Explore our academic programs, learning
+                        environment, and student activities.
+                    </p>
+                </div>
+
+                <div class="cards">
+
+                    <article class="card">
+                        <div class="card-icon">💻</div>
+                        <h3>Academic Excellence</h3>
+                        <p>
+                            Explore engineering and management
+                            disciplines designed to develop practical
+                            knowledge and technical skills.
+                        </p>
+                        <button class="btn btn-blue"
+                                data-go="departments"
+                                style="margin-top:18px">
+                            View Departments
+                        </button>
+                    </article>
+
+                    <article class="card">
+                        <div class="card-icon">👨‍🏫</div>
+                        <h3>Experienced Faculty</h3>
+                        <p>
+                            Discover our faculty profiles and their
+                            areas of teaching and specialization.
+                        </p>
+                        <button class="btn btn-blue"
+                                data-go="faculty"
+                                style="margin-top:18px">
+                            Meet Our Faculty
+                        </button>
+                    </article>
+
+                    <article class="card">
+                        <div class="card-icon">🏫</div>
+                        <h3>Campus Experience</h3>
+                        <p>
+                            Explore learning facilities, student
+                            activities, sports, and campus events.
+                        </p>
+                        <button class="btn btn-blue"
+                                data-go="facilities"
+                                style="margin-top:18px">
+                            Explore Facilities
+                        </button>
+                    </article>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== ABOUT PAGE ========== -->
+        <section id="about" class="page">
+            <div class="container">
+
+                <div class="page-heading">
+                    <span class="eyebrow">Who We Are</span>
+                    <h2>About Our Institution</h2>
+                    <p>
+                        Developing knowledge, creativity, and
+                        professional skills through education.
+                    </p>
+                </div>
+
+                <div class="about-layout">
+
+                    <article class="about-panel">
+                        <h3>Our College</h3>
+
+                        <p>
+                            ABC College of Engineering is presented
+                            here as an educational institution focused
+                            on academic learning, technical knowledge,
+                            innovation, and student development.
+                        </p>
+
+                        <p>
+                            Our website introduces students to
+                            departments, academic programs, faculty,
+                            admissions, campus facilities, and events.
+                        </p>
+
+                        <p>
+                            We aim to encourage curiosity, critical
+                            thinking, collaboration, and lifelong
+                            learning through a supportive educational
+                            environment.
+                        </p>
+
+                        <button class="btn btn-blue"
+                                data-go="courses">
+                            Explore Our Courses →
+                        </button>
+                    </article>
+
+                    <article class="about-panel">
+                        <h3>Our Vision and Mission</h3>
+
+                        <div class="mission-list">
+
+                            <div class="mission-item">
+                                <strong>🌟 Our Vision</strong>
+                                <p>
+                                    To inspire learners to pursue
+                                    knowledge, innovation, and
+                                    responsible professional growth.
+                                </p>
+                            </div>
+
+                            <div class="mission-item">
+                                <strong>🎯 Our Mission</strong>
+                                <p>
+                                    To encourage academic excellence,
+                                    practical learning, and
+                                    student development.
+                                </p>
+                            </div>
+
+                            <div class="mission-item">
+                                <strong>🤝 Our Values</strong>
+                                <p>
+                                    Integrity, teamwork, creativity,
+                                    respect, and continuous improvement.
+                                </p>
+                            </div>
+
+                        </div>
+                    </article>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== DEPARTMENTS PAGE ========== -->
+        <section id="departments" class="page">
+            <div class="container">
+
+                <div class="page-heading">
+                    <span class="eyebrow">Academic Excellence</span>
+                    <h2>Our Departments</h2>
+                    <p>
+                        Explore different engineering disciplines
+                        and their areas of study.
+                    </p>
+                </div>
+
+                <div class="cards">
+
+                    <article class="card">
+                        <div class="card-icon">💻</div>
+                        <h3>Computer Science</h3>
+                        <p>
+                            Programming, artificial intelligence,
+                            software engineering, databases, and
+                            web development.
+                        </p>
+                        <span class="card-meta">TECHNOLOGY</span>
+                    </article>
+
+                    <article class="card">
+                        <div class="card-icon">🔌</div>
+                        <h3>Electronics</h3>
+                        <p>
+                            Electronic circuits, communication
+                            systems, embedded technology, and
+                            digital electronics.
+                        </p>
+                        <span class="card-meta">ELECTRONICS</span>
+                    </article>
+
+                    <article class="card">
+                        <div class="card-icon">⚙️</div>
+                        <h3>Mechanical Engineering</h3>
+                        <p>
+                            Machines, manufacturing processes,
+                            mechanical design, and engineering
+                            materials.
+                        </p>
+                        <span class="card-meta">ENGINEERING</span>
+                    </article>
+
+                    <article class="card">
+                        <div class="card-icon">🏗️</div>
+                        <h3>Civil Engineering</h3>
+                        <p>
+                            Construction, structural engineering,
+                            surveying, transportation, and
+                            infrastructure planning.
+                        </p>
+                        <span class="card-meta">INFRASTRUCTURE</span>
+                    </article>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== COURSES PAGE ========== -->
+        <section id="courses" class="page">
+            <div class="container">
+
+                <div class="page-heading">
+                    <span class="eyebrow">Programs and Degrees</span>
+                    <h2>Courses Offered</h2>
+                    <p>
+                        Discover undergraduate and postgraduate
+                        study options.
+                    </p>
+                </div>
+
+                <div class="cards">
+
+                    <article class="card">
+                        <div class="card-icon">🎓</div>
+                        <h3>B.Tech</h3>
+                        <p>
+                            Undergraduate engineering programs
+                            covering foundational science,
+                            engineering concepts, and specialization.
+                        </p>
+                        <span class="card-meta">UNDERGRADUATE</span>
+                    </article>
+
+                    <article class="card">
+                        <div class="card-icon">📐</div>
+                        <h3>M.Tech</h3>
+                        <p>
+                            Postgraduate engineering study focused
+                            on advanced technical knowledge,
+                            specialization, and research.
+                        </p>
+                        <span class="card-meta">POSTGRADUATE</span>
+                    </article>
+
+                    <article class="card">
+                        <div class="card-icon">📊</div>
+                        <h3>MBA</h3>
+                        <p>
+                            Management and business administration
+                            covering leadership, marketing, finance,
+                            and organizational strategy.
+                        </p>
+                        <span class="card-meta">MANAGEMENT</span>
+                    </article>
+
+                </div>
+
+                <div style="text-align:center; margin-top:35px">
+                    <button class="btn btn-blue"
+                            data-go="admissions">
+                        Admission Information →
+                    </button>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ========== FACULTY PAGE ========== -->
+        <section id="faculty" class="page">
+            <div class="container">
+
+                <div class="page-heading">
+                    <span class="eyebrow">Our Teaching Team</span>
+                    <h2>Meet Our Faculty</h2>
+                    <p>
+                        Discover the educators who guide students
+                        through their academic journey.
+                    </p>
+                </div>
+
+                <div class="cards">
+
+                    <article class="card faculty-card">
+                        <div class="faculty-avatar">👨‍💻</div>
+                        <h3>Dr. Ravi Kumar</h3>
+                        <p class="designation">
+                            Professor — Computer Science
+                        </p>
+                        <p>
+                            Teaching interests include programming,
+                            software development, and computing.
+                        </p>
+                    </article>
+
+                    <article class="card faculty-card">
+                        <div class="faculty-avatar">👩‍🔬</div>
+                        <h3>Dr. Priya Sharma</h3>
+                        <p class="designation">
+                            Professor — Electronics
+                        </p>
+                        <p>
+                            Teaching interests include electronics,
+                            digital systems, and communication.
+                        </p>
+                    </article>
+
+                    <article class="card faculty-card">
+                        <div class="faculty-avatar">👨‍🏭</div>
+                        <h3>Prof. Arun Kumar</h3>
+                        <p class="designation">
+                            Professor — Mechanical Engineering
+                        </p>
+                        <p>
+                            Teaching interests include mechanical
+                            systems, design, and manufacturing.
+                        </p>
+                    </article>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== ADMISSIONS PAGE ========== -->
+        <section id="admissions" class="page">
+            <div class="container">
+
+                <div class="page-heading">
+                    <span class="eyebrow">Start Your Journey</span>
+                    <h2>Admissions</h2>
+                    <p>
+                        Follow these general steps to understand
+                        the admission process.
+                    </p>
+                </div>
+
+                <div class="admission-banner">
+                    <h3>Your Future Begins with Education</h3>
+                    <p>
+                        Review the eligibility criteria and
+                        requirements for your chosen program.
+                    </p>
+                    <button class="btn btn-gold"
+                            data-go="contact">
+                        Contact the College →
+                    </button>
+                </div>
+
+                <div class="cards">
+
+                    <article class="card">
+                        <div class="step-number">1</div>
+                        <h3>Check Eligibility</h3>
+                        <p>
+                            Review the applicable eligibility
+                            criteria, required qualifications,
+                            and course requirements.
+                        </p>
+                    </article>
+
+                    <article class="card">
+                        <div class="step-number">2</div>
+                        <h3>Submit Application</h3>
+                        <p>
+                            Complete the appropriate application
+                            process and prepare the required
+                            supporting documents.
+                        </p>
+                    </article>
+
+                    <article class="card">
+                        <div class="step-number">3</div>
+                        <h3>Verify Documents</h3>
+                        <p>
+                            Follow the institution's instructions
+                            for document verification and
+                            admission formalities.
+                        </p>
+                    </article>
+
+                </div>
+
+                <p style="text-align:center; color:#64748b;
+                          margin-top:25px; font-size:13px">
+                    Note: Confirm actual eligibility, deadlines,
+                    fees, and admission requirements with the
+                    institution.
+                </p>
+
+            </div>
+        </section>
+
+        <!-- ========== FACILITIES PAGE ========== -->
+        <section id="facilities" class="page">
+            <div class="container">
+
+                <div class="page-heading">
+                    <span class="eyebrow">Campus Life</span>
+                    <h2>Campus Facilities</h2>
+                    <p>
+                        Explore facilities that support learning,
+                        recreation, and student life.
+                    </p>
+                </div>
+
+                <div class="cards">
+
+                    <article class="card">
+                        <div class="card-icon">📚</div>
+                        <h3>Library</h3>
+                        <p>
+                            Learning resources, reference materials,
+                            books, journals, and study spaces.
+                        </p>
+                    </article>
+
+                    <article class="card">
+                        <div class="card-icon">💻</div>
+                        <h3>Laboratories</h3>
+                        <p>
+                            Practical learning environments for
+                            computing, engineering experiments,
+                            and technical projects.
+                        </p>
+                    </article>
+
+                    <article class="card">
+                        <div class="card-icon">🏏</div>
+                        <h3>Sports</h3>
+                        <p>
+                            Opportunities for physical activity,
+                            sports participation, teamwork,
+                            and recreation.
+                        </p>
+                    </article>
+
+                    <article class="card">
+                        <div class="card-icon">🚌</div>
+                        <h3>Transport</h3>
+                        <p>
+                            Information about transportation
+                            arrangements and commuting options.
+                        </p>
+                    </article>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== EVENTS PAGE ========== -->
+        <section id="events" class="page">
+            <div class="container">
+
+                <div class="page-heading">
+                    <span class="eyebrow">Beyond the Classroom</span>
+                    <h2>College Events</h2>
+                    <p>
+                        Academic competitions and student activities
+                        can make campus life engaging and memorable.
+                    </p>
+                </div>
+
+                <div class="cards">
+
+                    <article class="card">
+                        <div class="card-icon">🚀</div>
+                        <h3>Technical Fest</h3>
+                        <p>
+                            Project exhibitions, coding challenges,
+                            technical presentations, and
+                            innovation activities.
+                        </p>
+                        <span class="card-meta">TECHNOLOGY</span>
+                    </article>
+
+                    <article class="card">
+                        <div class="card-icon">🎭</div>
+                        <h3>Annual Day</h3>
+                        <p>
+                            Cultural performances, student
+                            achievements, creative presentations,
+                            and award ceremonies.
+                        </p>
+                        <span class="card-meta">CULTURE</span>
+                    </article>
+
+                    <article class="card">
+                        <div class="card-icon">🏆</div>
+                        <h3>Sports Meet</h3>
+                        <p>
+                            Sports competitions, team activities,
+                            fitness challenges, and friendly
+                            sporting events.
+                        </p>
+                        <span class="card-meta">SPORTS</span>
+                    </article>
+
+                </div>
+
+                <p style="text-align:center; color:#64748b;
+                          margin-top:25px; font-size:13px">
+                    Event descriptions are examples. Actual
+                    schedules should be announced by the college.
+                </p>
+
+            </div>
+        </section>
+
+        <!-- ========== CONTACT PAGE ========== -->
+        <section id="contact" class="page">
+            <div class="container">
+
+                <div class="page-heading">
+                    <span class="eyebrow">Get in Touch</span>
+                    <h2>Contact ABC College</h2>
+                    <p>
+                        Find the contact information or prepare
+                        an enquiry about academic programs.
+                    </p>
+                </div>
+
+                <div class="contact-layout">
+
+                    <article class="contact-panel">
+                        <h3>Contact Information</h3>
+
+                        <div class="contact-item">
+                            <div class="contact-icon">📧</div>
+                            <div>
+                                <strong>Email</strong>
+                                <p>
+                                    info@abccollege.example
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon">📞</div>
+                            <div>
+                                <strong>Phone</strong>
+                                <p>+91 98765 43210</p>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon">📍</div>
+                            <div>
+                                <strong>Address</strong>
+                                <p>Main Road, Your City, India</p>
+                            </div>
+                        </div>
+
+                        <p style="color:#64748b; font-size:13px;
+                                  margin-top:15px">
+                            Replace these sample details with
+                            the college's actual contact information.
+                        </p>
+                    </article>
+
+                    <article class="contact-panel">
+                        <h3>Send an Enquiry</h3>
+
+                        <form id="contactForm" class="contact-form">
+
+                            <label>
+                                Full Name
+                                <input type="text" id="visitorName"
+                                       name="name"
+                                       placeholder="Enter your name"
+                                       autocomplete="name"
+                                       maxlength="100"
+                                       required>
+                            </label>
+
+                            <label>
+                                Email Address
+                                <input type="email" id="visitorEmail"
+                                       name="email"
+                                       placeholder="Enter your email"
+                                       autocomplete="email"
+                                       maxlength="254"
+                                       required>
+                            </label>
+
+                            <label>
+                                Your Message
+                                <textarea id="visitorMessage"
+                                          name="message"
+                                          placeholder="Write your enquiry..."
+                                          maxlength="2000"
+                                          required></textarea>
+                            </label>
+
+                            <button type="submit"
+                                    class="btn btn-blue">
+                                Prepare Email →
+                            </button>
+
+                            <p class="form-note">
+                                This demo opens your email application.
+                                It does not send or store messages
+                                by itself.
+                            </p>
+
+                        </form>
+                    </article>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="site-footer">
+        <p><strong>🎓 ABC College of Engineering</strong></p>
+
+        <p>Knowledge • Innovation • Excellence</p>
+
+        <div class="footer-links">
+            <a href="#home" data-page="home">Home</a>
+            <a href="#about" data-page="about">About</a>
+            <a href="#courses" data-page="courses">Courses</a>
+            <a href="#admissions" data-page="admissions">Admissions</a>
+            <a href="#contact" data-page="contact">Contact</a>
+        </div>
+
+        <p class="copyright">
+            &copy; 2026 ABC College. All rights reserved.
+        </p>
+    </footer>
+
+    <script>
+        "use strict";
+
+        // ========== PAGE NAVIGATION ==========
+
+        const pages = document.querySelectorAll(".page");
+        const navLinks = document.querySelectorAll("[data-page]");
+
+        function showPage(pageId, updateHistory = true) {
+            const targetPage = document.getElementById(pageId);
+
+            // Only allow navigation to a valid page.
+            if (!targetPage || !targetPage.classList.contains("page")) {
+                return;
+            }
+
+            // Hide all pages and display only the selected page.
+            pages.forEach(function (page) {
+                page.classList.toggle(
+                    "active",
+                    page.id === pageId
+                );
+            });
+
+            // Update active navigation links.
+            navLinks.forEach(function (link) {
+                const active = link.dataset.page === pageId;
+
+                link.classList.toggle("active", active);
+
+                if (active && link.classList.contains("nav-link")) {
+                    link.setAttribute("aria-current", "page");
+                } else if (link.classList.contains("nav-link")) {
+                    link.removeAttribute("aria-current");
+                }
+            });
+
+            // Keep the URL in sync with the displayed page.
+            if (updateHistory &&
+                window.location.hash !== "#" + pageId) {
+                history.pushState(
+                    { page: pageId },
+                    "",
+                    "#" + pageId
+                );
+            }
+
+            // Always start the selected page at its top.
+            window.scrollTo(0, 0);
+        }
+
+        // Handle the main navigation and footer links.
+        document.querySelectorAll("[data-page]").forEach(function (link) {
+            link.addEventListener("click", function (event) {
+                event.preventDefault();
+                showPage(link.dataset.page);
+            });
+        });
+
+        // Handle buttons that navigate to another page.
+        document.querySelectorAll("[data-go]").forEach(function (button) {
+            button.addEventListener("click", function () {
+                showPage(button.dataset.go);
+            });
+        });
+
+        // Support browser Back and Forward.
+        window.addEventListener("popstate", function () {
+            const pageId = window.location.hash.substring(1);
+            const target = document.getElementById(pageId);
+
+            if (target && target.classList.contains("page")) {
+                showPage(pageId, false);
+            } else {
+                showPage("home", false);
+            }
+        });
+
+        // Open the correct page when loading a URL directly.
+        (function initializePage() {
+            const pageId = window.location.hash.substring(1);
+            const target = document.getElementById(pageId);
+
+            if (target && target.classList.contains("page")) {
+                showPage(pageId, false);
+            } else {
+                showPage("home", false);
+            }
+        })();
+
+
+        // ========== CONTACT FORM ==========
+
+        const contactForm = document.getElementById("contactForm");
+
+        contactForm.addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            if (!contactForm.reportValidity()) {
+                return;
+            }
+
+            const name = document.getElementById("visitorName").value.trim();
+            const email = document.getElementById("visitorEmail").value.trim();
+            const message = document.getElementById("visitorMessage").value.trim();
+
+            if (!name || !email || !message) {
+                return;
+            }
+
+            const subject = encodeURIComponent(
+                "College Enquiry from " + name
+            );
+
+            const body = encodeURIComponent(
+                "Name: " + name + "\n" +
+                "Email: " + email + "\n\n" +
+                "Message:\n" + message
+            );
+
+            // Uses the sample address from the original website.
+            // Replace it with the real college email address.
+            window.location.href =
+                "mailto:info@abccollege.example" +
+                "?subject=" + subject +
+                "&body=" + body;
+        });
+    </script>
+
+</body>
+</html>

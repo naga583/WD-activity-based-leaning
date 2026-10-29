@@ -1,0 +1,1586 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#172554">
+
+    <title>LearnHub | Online Learning Platform</title>
+
+    <style>
+        /* ===== GLOBAL STYLES ===== */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --primary: #176b87;
+            --primary-dark: #104e68;
+            --navy: #172554;
+            --accent: #ffd166;
+            --success: #15966b;
+            --background: #f4f7fc;
+            --text: #263247;
+            --muted: #64748b;
+            --white: #ffffff;
+            --shadow: 0 8px 25px rgba(23, 37, 84, 0.08);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: var(--background);
+            color: var(--text);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        button, a {
+            font: inherit;
+        }
+
+        button {
+            cursor: pointer;
+        }
+
+        a {
+            color: inherit;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        /* ===== HEADER ===== */
+        header {
+            background: linear-gradient(120deg, #172554, #176b87);
+            color: var(--white);
+            padding: 22px 5%;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+        }
+
+        .logo {
+            font-size: 29px;
+            font-weight: 800;
+            letter-spacing: -1px;
+        }
+
+        .logo span {
+            color: var(--accent);
+        }
+
+        .header-tagline {
+            color: #e2e8f0;
+            font-size: 14px;
+        }
+
+        /* ===== NAVIGATION ===== */
+        nav {
+            background: #101a35;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+        }
+
+        .nav-links {
+            max-width: 1200px;
+            margin: auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 5px;
+        }
+
+        .nav-links a {
+            display: block;
+            color: #e2e8f0;
+            text-decoration: none;
+            padding: 16px 20px;
+            font-size: 15px;
+            font-weight: 600;
+            border-bottom: 3px solid transparent;
+            transition: 0.25s;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--accent);
+            background: rgba(255, 255, 255, 0.06);
+            border-bottom-color: var(--accent);
+        }
+
+        /* ===== PAGE SWITCHING ===== */
+        .page {
+            display: none;
+            min-height: 65vh;
+            animation: pageEnter 0.35s ease;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        @keyframes pageEnter {
+            from {
+                opacity: 0;
+                transform: translateY(8px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ===== HOME HERO ===== */
+        .hero {
+            background:
+                radial-gradient(circle at 85% 20%,
+                    rgba(255, 209, 102, 0.20), transparent 25%),
+                linear-gradient(125deg, #172554, #176b87, #4286a8);
+            color: white;
+            padding: 90px 20px;
+        }
+
+        .hero-content {
+            max-width: 1100px;
+            margin: auto;
+            text-align: center;
+        }
+
+        .hero-label {
+            display: inline-block;
+            padding: 7px 16px;
+            margin-bottom: 20px;
+            background: rgba(255, 255, 255, 0.12);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            border-radius: 30px;
+            font-size: 13px;
+            letter-spacing: 1px;
+        }
+
+        .hero h1 {
+            font-size: clamp(34px, 6vw, 58px);
+            line-height: 1.15;
+            margin-bottom: 22px;
+        }
+
+        .hero h1 span {
+            color: var(--accent);
+        }
+
+        .hero p {
+            max-width: 650px;
+            margin: 0 auto 30px;
+            color: #e2e8f0;
+            font-size: 17px;
+        }
+
+        .hero-actions {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        /* ===== BUTTONS ===== */
+        .btn {
+            display: inline-block;
+            border: none;
+            border-radius: 8px;
+            padding: 12px 23px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: 0.25s;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        .btn-light {
+            background: white;
+            color: var(--navy);
+        }
+
+        .btn-light:hover {
+            background: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            border: 1px solid #cbd5e1;
+            color: var(--primary);
+            background: white;
+        }
+
+        .btn-outline:hover {
+            border-color: var(--primary);
+            background: #eff8ff;
+        }
+
+        .btn:focus-visible,
+        nav a:focus-visible {
+            outline: 3px solid var(--accent);
+            outline-offset: 3px;
+        }
+
+        /* ===== GENERAL LAYOUT ===== */
+        .container {
+            max-width: 1150px;
+            padding: 55px 22px;
+            margin: auto;
+        }
+
+        .page-heading {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .page-heading h1 {
+            color: var(--navy);
+            font-size: clamp(28px, 4vw, 38px);
+            margin-bottom: 8px;
+        }
+
+        .page-heading p {
+            color: var(--muted);
+        }
+
+        .section-heading {
+            color: var(--navy);
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .section-subtitle {
+            color: var(--muted);
+            margin-bottom: 25px;
+        }
+
+        /* ===== STATISTICS ===== */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            max-width: 1000px;
+            margin: -1px auto 0;
+            padding: 28px 22px;
+        }
+
+        .stat-card {
+            background: white;
+            border-radius: 12px;
+            padding: 24px 15px;
+            text-align: center;
+            box-shadow: var(--shadow);
+        }
+
+        .stat-card strong {
+            display: block;
+            font-size: 30px;
+            color: var(--primary);
+        }
+
+        .stat-card span {
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        /* ===== FEATURE CARDS ===== */
+        .feature-grid,
+        .course-grid,
+        .instructor-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 22px;
+        }
+
+        .feature-card,
+        .card,
+        .instructor-card,
+        .about-card,
+        .learning-card {
+            background: white;
+            border-radius: 13px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+        }
+
+        .feature-card {
+            padding: 25px;
+            border: 1px solid #edf1f7;
+        }
+
+        .feature-icon {
+            font-size: 36px;
+            margin-bottom: 12px;
+        }
+
+        .feature-card h3 {
+            color: var(--navy);
+            margin-bottom: 8px;
+        }
+
+        .feature-card p {
+            color: var(--muted);
+            margin-bottom: 18px;
+        }
+
+        .text-link {
+            color: var(--primary);
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .text-link:hover {
+            text-decoration: underline;
+        }
+
+        /* ===== COURSE FILTERS ===== */
+        .categories {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+
+        .filter-btn {
+            padding: 9px 18px;
+            border: 1px solid #dbe3ed;
+            border-radius: 30px;
+            background: white;
+            color: var(--text);
+            transition: 0.2s;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: var(--primary);
+            border-color: var(--primary);
+            color: white;
+        }
+
+        /* ===== COURSE CARDS ===== */
+        .card {
+            display: flex;
+            flex-direction: column;
+            border: 1px solid #edf1f7;
+            transition: transform 0.25s, box-shadow 0.25s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(23, 37, 84, 0.13);
+        }
+
+        .thumbnail {
+            min-height: 155px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 58px;
+            background: linear-gradient(135deg, #dce8f5, #eef5ff);
+        }
+
+        .thumbnail.purple {
+            background: linear-gradient(135deg, #eee5ff, #f7f0ff);
+        }
+
+        .thumbnail.orange {
+            background: linear-gradient(135deg, #ffefd5, #fff8e9);
+        }
+
+        .info {
+            padding: 22px;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+
+        .course-tag {
+            color: var(--primary);
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            margin-bottom: 7px;
+        }
+
+        .info h3 {
+            color: var(--navy);
+            font-size: 21px;
+            margin-bottom: 9px;
+        }
+
+        .description {
+            color: var(--muted);
+            font-size: 14px;
+            margin-bottom: 12px;
+        }
+
+        .instructor-name {
+            color: #64748b;
+            font-size: 13px;
+            margin-bottom: 15px;
+        }
+
+        .objectives-title {
+            margin-bottom: 6px;
+            font-size: 14px;
+        }
+
+        .objectives {
+            padding-left: 20px;
+            color: #526176;
+            font-size: 13px;
+            margin-bottom: 18px;
+        }
+
+        .objectives li {
+            margin-bottom: 5px;
+        }
+
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            font-size: 12px;
+            color: var(--muted);
+            margin-top: auto;
+            margin-bottom: 7px;
+        }
+
+        .progress {
+            height: 9px;
+            background: #e5eaf1;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 18px;
+        }
+
+        .progress-bar {
+            height: 100%;
+            width: 0;
+            background: var(--success);
+            border-radius: inherit;
+            transition: width 0.4s;
+        }
+
+        .enroll {
+            width: 100%;
+        }
+
+        .enroll:disabled {
+            background: var(--success);
+            cursor: default;
+        }
+
+        .empty-message {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 35px 15px;
+            color: var(--muted);
+            background: white;
+            border-radius: 12px;
+        }
+
+        /* ===== ABOUT PAGE ===== */
+        .about-layout {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 35px;
+            align-items: start;
+        }
+
+        .about-card {
+            padding: 30px;
+        }
+
+        .about-card h2 {
+            color: var(--navy);
+            margin-bottom: 12px;
+        }
+
+        .about-card p {
+            color: var(--muted);
+            margin-bottom: 15px;
+        }
+
+        .about-points {
+            display: grid;
+            gap: 14px;
+            margin-top: 20px;
+        }
+
+        .about-point {
+            padding: 16px;
+            background: #f0f7ff;
+            border-radius: 9px;
+        }
+
+        .about-point strong {
+            color: var(--navy);
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .about-point span {
+            font-size: 14px;
+            color: var(--muted);
+        }
+
+        /* ===== INSTRUCTORS ===== */
+        .instructor-card {
+            padding: 28px 20px;
+            text-align: center;
+            border: 1px solid #edf1f7;
+            transition: transform 0.25s;
+        }
+
+        .instructor-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .avatar {
+            width: 86px;
+            height: 86px;
+            border-radius: 50%;
+            background: #e2f1f8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 43px;
+            margin: 0 auto 15px;
+        }
+
+        .instructor-card h3 {
+            color: var(--navy);
+            margin-bottom: 5px;
+        }
+
+        .instructor-card p {
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        .instructor-badge {
+            display: inline-block;
+            margin-top: 14px;
+            padding: 5px 12px;
+            border-radius: 20px;
+            background: #e5f5ef;
+            color: #11744f;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        /* ===== MY LEARNING ===== */
+        .learning-summary {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 18px;
+            margin-bottom: 30px;
+        }
+
+        .summary-card {
+            background: white;
+            padding: 22px;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+        }
+
+        .summary-card span {
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        .summary-card strong {
+            display: block;
+            color: var(--navy);
+            font-size: 28px;
+        }
+
+        .learning-list {
+            display: grid;
+            gap: 16px;
+        }
+
+        .learning-card {
+            padding: 22px;
+            display: grid;
+            grid-template-columns: 70px 1fr;
+            gap: 18px;
+            align-items: center;
+        }
+
+        .learning-icon {
+            width: 70px;
+            height: 70px;
+            background: #e8f2fb;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 35px;
+        }
+
+        .learning-card h3 {
+            color: var(--navy);
+            margin-bottom: 4px;
+        }
+
+        .learning-card p {
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        .learning-card .progress {
+            margin: 12px 0 0;
+        }
+
+        .empty-learning {
+            text-align: center;
+            background: white;
+            padding: 50px 20px;
+            border-radius: 13px;
+            box-shadow: var(--shadow);
+        }
+
+        .empty-learning .empty-icon {
+            font-size: 48px;
+            margin-bottom: 12px;
+        }
+
+        .empty-learning h2 {
+            color: var(--navy);
+            margin-bottom: 8px;
+        }
+
+        .empty-learning p {
+            color: var(--muted);
+            margin-bottom: 20px;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            margin-top: 30px;
+            padding: 30px 20px;
+            text-align: center;
+            color: #cbd5e1;
+            background: #101a35;
+        }
+
+        footer strong {
+            color: white;
+        }
+
+        footer p + p {
+            margin-top: 5px;
+            font-size: 13px;
+        }
+
+        /* ===== RESPONSIVE DESIGN ===== */
+        @media (max-width: 850px) {
+            .feature-grid,
+            .course-grid,
+            .instructor-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .about-layout {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .nav-links {
+                padding: 4px 8px;
+            }
+
+            .nav-links a {
+                padding: 11px 10px;
+                font-size: 13px;
+            }
+
+            .hero {
+                padding: 65px 18px;
+            }
+
+            .hero p {
+                font-size: 15px;
+            }
+
+            .container {
+                padding: 38px 16px;
+            }
+
+            .feature-grid,
+            .course-grid,
+            .instructor-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats,
+            .learning-summary {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+
+            .stat-card {
+                padding: 16px;
+            }
+
+            .learning-card {
+                grid-template-columns: 52px 1fr;
+                padding: 16px;
+                gap: 12px;
+            }
+
+            .learning-icon {
+                width: 52px;
+                height: 52px;
+                font-size: 27px;
+            }
+
+            .about-card {
+                padding: 22px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                scroll-behavior: auto !important;
+                animation-duration: 0.01ms !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ===== HEADER ===== -->
+    <header>
+        <div class="header-content">
+            <div>
+                <div class="logo">📘 Learn<span>Hub</span></div>
+                <p class="header-tagline">Your Online Learning Platform</p>
+            </div>
+
+            <div class="header-tagline">
+                Learn today. Lead tomorrow.
+            </div>
+        </div>
+    </header>
+
+    <!-- ===== NAVIGATION ===== -->
+    <nav aria-label="Main navigation">
+        <div class="nav-links">
+            <a href="#home" class="active"
+               data-page="home" aria-current="page">Home</a>
+
+            <a href="#about"
+               data-page="about">About</a>
+
+            <a href="#courses"
+               data-page="courses">Courses</a>
+
+            <a href="#instructors"
+               data-page="instructors">Instructors</a>
+
+            <a href="#learning"
+               data-page="learning">My Learning</a>
+        </div>
+    </nav>
+
+    <main>
+
+        <!-- ===== HOME PAGE ===== -->
+        <section id="home" class="page active">
+
+            <div class="hero">
+                <div class="hero-content">
+                    <span class="hero-label">
+                        YOUR JOURNEY STARTS HERE
+                    </span>
+
+                    <h1>
+                        Learn New Skills.<br>
+                        <span>Build Your Future.</span>
+                    </h1>
+
+                    <p>
+                        Discover high-quality online courses, learn
+                        from experienced instructors, and develop the
+                        skills you need to achieve your goals.
+                    </p>
+
+                    <div class="hero-actions">
+                        <button class="btn btn-light"
+                                data-go="courses">
+                            Explore Courses →
+                        </button>
+
+                        <button class="btn btn-outline"
+                                data-go="about">
+                            Discover LearnHub
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="stats">
+                <div class="stat-card">
+                    <strong>3+</strong>
+                    <span>Professional Courses</span>
+                </div>
+
+                <div class="stat-card">
+                    <strong>3</strong>
+                    <span>Expert Instructors</span>
+                </div>
+
+                <div class="stat-card">
+                    <strong>100%</strong>
+                    <span>Learn at Your Pace</span>
+                </div>
+            </div>
+
+            <div class="container">
+                <div class="page-heading">
+                    <h1>Welcome to LearnHub</h1>
+                    <p>Your destination for learning, growth, and success.</p>
+                </div>
+
+                <div class="feature-grid">
+                    <article class="feature-card">
+                        <div class="feature-icon">💻</div>
+                        <h3>Learn Programming</h3>
+                        <p>
+                            Build websites and develop practical
+                            coding skills from the basics.
+                        </p>
+                        <a href="#courses" class="text-link"
+                           data-go="courses">View Courses →</a>
+                    </article>
+
+                    <article class="feature-card">
+                        <div class="feature-icon">🎨</div>
+                        <h3>Explore Design</h3>
+                        <p>
+                            Learn modern design principles and create
+                            user-friendly digital experiences.
+                        </p>
+                        <a href="#courses" class="text-link"
+                           data-go="courses">View Courses →</a>
+                    </article>
+
+                    <article class="feature-card">
+                        <div class="feature-icon">📈</div>
+                        <h3>Grow Your Career</h3>
+                        <p>
+                            Discover digital marketing and build
+                            valuable professional skills.
+                        </p>
+                        <a href="#courses" class="text-link"
+                           data-go="courses">View Courses →</a>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== ABOUT PAGE ===== -->
+        <section id="about" class="page">
+            <div class="container">
+
+                <div class="page-heading">
+                    <h1>About LearnHub</h1>
+                    <p>Making quality online education accessible to everyone.</p>
+                </div>
+
+                <div class="about-layout">
+                    <article class="about-card">
+                        <h2>Who We Are</h2>
+
+                        <p>
+                            LearnHub is an online learning platform
+                            designed to help learners develop practical
+                            skills in technology, design, and business.
+                        </p>
+
+                        <p>
+                            Our goal is to make learning simple,
+                            flexible, and engaging. Learners can explore
+                            courses, discover learning objectives, and
+                            track their enrolled courses in one place.
+                        </p>
+
+                        <p>
+                            Whether you are starting your journey or
+                            improving your existing knowledge, LearnHub
+                            provides a convenient place to grow.
+                        </p>
+
+                        <button class="btn btn-primary"
+                                data-go="courses">
+                            Start Learning →
+                        </button>
+                    </article>
+
+                    <article class="about-card">
+                        <h2>Why Choose Us?</h2>
+
+                        <div class="about-points">
+                            <div class="about-point">
+                                <strong>🎯 Practical Learning</strong>
+                                <span>
+                                    Focus on useful skills and clear
+                                    learning objectives.
+                                </span>
+                            </div>
+
+                            <div class="about-point">
+                                <strong>👩‍🏫 Expert Instructors</strong>
+                                <span>
+                                    Explore courses guided by
+                                    experienced subject instructors.
+                                </span>
+                            </div>
+
+                            <div class="about-point">
+                                <strong>📊 Progress Tracking</strong>
+                                <span>
+                                    Monitor your enrolled courses and
+                                    learning progress.
+                                </span>
+                            </div>
+
+                            <div class="about-point">
+                                <strong>📱 Responsive Experience</strong>
+                                <span>
+                                    Access the website on desktop,
+                                    tablet, or mobile devices.
+                                </span>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ===== COURSES PAGE ===== -->
+        <section id="courses" class="page">
+            <div class="container">
+
+                <div class="page-heading">
+                    <h1>Explore Our Courses</h1>
+                    <p>
+                        Choose a course, learn new skills, and track
+                        your progress.
+                    </p>
+                </div>
+
+                <div class="categories" aria-label="Filter courses">
+                    <button class="filter-btn active"
+                            data-category="All"
+                            aria-pressed="true">All Courses</button>
+
+                    <button class="filter-btn"
+                            data-category="Programming"
+                            aria-pressed="false">Programming</button>
+
+                    <button class="filter-btn"
+                            data-category="Design"
+                            aria-pressed="false">Design</button>
+
+                    <button class="filter-btn"
+                            data-category="Business"
+                            aria-pressed="false">Business</button>
+                </div>
+
+                <div class="course-grid" id="courseGrid">
+
+                    <!-- COURSE 1 -->
+                    <article class="card course-card"
+                             data-category="Programming"
+                             data-course="web">
+
+                        <div class="thumbnail">💻</div>
+
+                        <div class="info">
+                            <p class="course-tag">PROGRAMMING</p>
+                            <h3>Web Development</h3>
+
+                            <p class="description">
+                                Learn HTML, CSS, and JavaScript to
+                                build attractive, interactive websites.
+                            </p>
+
+                            <p class="instructor-name">
+                                Instructor: John Smith
+                            </p>
+
+                            <h4 class="objectives-title">
+                                Learning Objectives
+                            </h4>
+
+                            <ul class="objectives">
+                                <li>Understand HTML fundamentals</li>
+                                <li>Design web pages with CSS</li>
+                                <li>Create interactions with JavaScript</li>
+                            </ul>
+
+                            <div class="progress-label">
+                                <span>Course Progress</span>
+                                <span class="progress-text">0%</span>
+                            </div>
+
+                            <div class="progress">
+                                <div class="progress-bar"></div>
+                            </div>
+
+                            <button class="btn btn-primary enroll"
+                                    data-enrolled="false"
+                                    data-course-id="web">
+                                Enroll Now
+                            </button>
+                        </div>
+                    </article>
+
+                    <!-- COURSE 2 -->
+                    <article class="card course-card"
+                             data-category="Design"
+                             data-course="design">
+
+                        <div class="thumbnail purple">🎨</div>
+
+                        <div class="info">
+                            <p class="course-tag">DESIGN</p>
+                            <h3>UI/UX Design</h3>
+
+                            <p class="description">
+                                Explore layouts, wireframes, prototypes,
+                                and user-friendly design.
+                            </p>
+
+                            <p class="instructor-name">
+                                Instructor: Sarah Johnson
+                            </p>
+
+                            <h4 class="objectives-title">
+                                Learning Objectives
+                            </h4>
+
+                            <ul class="objectives">
+                                <li>Understand design principles</li>
+                                <li>Create basic wireframes</li>
+                                <li>Improve user experience</li>
+                            </ul>
+
+                            <div class="progress-label">
+                                <span>Course Progress</span>
+                                <span class="progress-text">0%</span>
+                            </div>
+
+                            <div class="progress">
+                                <div class="progress-bar"></div>
+                            </div>
+
+                            <button class="btn btn-primary enroll"
+                                    data-enrolled="false"
+                                    data-course-id="design">
+                                Enroll Now
+                            </button>
+                        </div>
+                    </article>
+
+                    <!-- COURSE 3 -->
+                    <article class="card course-card"
+                             data-category="Business"
+                             data-course="marketing">
+
+                        <div class="thumbnail orange">📊</div>
+
+                        <div class="info">
+                            <p class="course-tag">BUSINESS</p>
+                            <h3>Digital Marketing</h3>
+
+                            <p class="description">
+                                Learn SEO, social media marketing,
+                                campaign planning, and analytics.
+                            </p>
+
+                            <p class="instructor-name">
+                                Instructor: David Wilson
+                            </p>
+
+                            <h4 class="objectives-title">
+                                Learning Objectives
+                            </h4>
+
+                            <ul class="objectives">
+                                <li>Understand SEO fundamentals</li>
+                                <li>Plan digital campaigns</li>
+                                <li>Analyze marketing results</li>
+                            </ul>
+
+                            <div class="progress-label">
+                                <span>Course Progress</span>
+                                <span class="progress-text">0%</span>
+                            </div>
+
+                            <div class="progress">
+                                <div class="progress-bar"></div>
+                            </div>
+
+                            <button class="btn btn-primary enroll"
+                                    data-enrolled="false"
+                                    data-course-id="marketing">
+                                Enroll Now
+                            </button>
+                        </div>
+                    </article>
+
+                    <p id="noCourses" class="empty-message hidden">
+                        No courses found in this category.
+                    </p>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ===== INSTRUCTORS PAGE ===== -->
+        <section id="instructors" class="page">
+            <div class="container">
+
+                <div class="page-heading">
+                    <h1>Meet Our Instructors</h1>
+                    <p>
+                        Learn from professionals who are passionate
+                        about sharing their knowledge.
+                    </p>
+                </div>
+
+                <div class="instructor-grid">
+
+                    <article class="instructor-card">
+                        <div class="avatar">👨‍💻</div>
+                        <h3>John Smith</h3>
+                        <p>Web Development Expert</p>
+                        <span class="instructor-badge">
+                            Programming
+                        </span>
+                    </article>
+
+                    <article class="instructor-card">
+                        <div class="avatar">👩‍🎨</div>
+                        <h3>Sarah Johnson</h3>
+                        <p>UI/UX Design Specialist</p>
+                        <span class="instructor-badge">
+                            Design
+                        </span>
+                    </article>
+
+                    <article class="instructor-card">
+                        <div class="avatar">👨‍🏫</div>
+                        <h3>David Wilson</h3>
+                        <p>Digital Marketing Expert</p>
+                        <span class="instructor-badge">
+                            Business
+                        </span>
+                    </article>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== MY LEARNING PAGE ===== -->
+        <section id="learning" class="page">
+            <div class="container">
+
+                <div class="page-heading">
+                    <h1>My Learning Dashboard</h1>
+                    <p>
+                        Keep track of your enrolled courses and
+                        monitor your learning progress.
+                    </p>
+                </div>
+
+                <div class="learning-summary">
+                    <div class="summary-card">
+                        <span>Enrolled Courses</span>
+                        <strong id="count">0</strong>
+                    </div>
+
+                    <div class="summary-card">
+                        <span>Average Progress</span>
+                        <strong id="averageProgress">0%</strong>
+                    </div>
+
+                    <div class="summary-card">
+                        <span>Completed Courses</span>
+                        <strong id="completedCount">0</strong>
+                    </div>
+                </div>
+
+                <div id="learningList" class="learning-list"></div>
+
+                <div id="emptyLearning" class="empty-learning">
+                    <div class="empty-icon">📚</div>
+                    <h2>Your learning journey starts here!</h2>
+                    <p>
+                        You have not enrolled in any courses yet.
+                        Explore our courses and choose your first one.
+                    </p>
+
+                    <button class="btn btn-primary"
+                            data-go="courses">
+                        Browse Courses →
+                    </button>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+    <footer>
+        <p><strong>📘 LearnHub</strong> — Learn Today, Lead Tomorrow.</p>
+        <p>&copy; 2026 LearnHub. All rights reserved.</p>
+    </footer>
+
+    <script>
+        "use strict";
+
+        // ===== PAGE NAVIGATION =====
+
+        const pages = document.querySelectorAll(".page");
+        const navLinks = document.querySelectorAll(".nav-links a");
+
+        function showPage(pageId) {
+            const targetPage = document.getElementById(pageId);
+
+            // Ignore invalid page names.
+            if (!targetPage || !targetPage.classList.contains("page")) {
+                return;
+            }
+
+            // Display ONLY the selected page.
+            pages.forEach(function (page) {
+                page.classList.toggle("active", page.id === pageId);
+            });
+
+            // Update the selected navigation link.
+            navLinks.forEach(function (link) {
+                const isActive = link.dataset.page === pageId;
+
+                link.classList.toggle("active", isActive);
+
+                if (isActive) {
+                    link.setAttribute("aria-current", "page");
+                } else {
+                    link.removeAttribute("aria-current");
+                }
+            });
+
+            // Update the URL hash so browser navigation works.
+            if (window.location.hash !== "#" + pageId) {
+                history.pushState(null, "", "#" + pageId);
+            }
+
+            // Start the new page at the top.
+            window.scrollTo({
+                top: 0,
+                behavior: "auto"
+            });
+        }
+
+        // Navigation menu clicks.
+        navLinks.forEach(function (link) {
+            link.addEventListener("click", function (event) {
+                event.preventDefault();
+                showPage(link.dataset.page);
+            });
+        });
+
+        // Buttons and links that open another page.
+        document.querySelectorAll("[data-go]").forEach(function (element) {
+            element.addEventListener("click", function (event) {
+                event.preventDefault();
+                showPage(element.dataset.go);
+            });
+        });
+
+        // Support browser Back and Forward buttons.
+        window.addEventListener("popstate", function () {
+            const pageId = window.location.hash.slice(1);
+            const validPage = document.getElementById(pageId);
+
+            showPage(
+                validPage && validPage.classList.contains("page")
+                    ? pageId
+                    : "home"
+            );
+        });
+
+        // Open the correct page when a URL contains a page hash.
+        (function initializePage() {
+            const initialPage = window.location.hash.slice(1);
+            const target = document.getElementById(initialPage);
+
+            if (target && target.classList.contains("page")) {
+                showPage(initialPage);
+            } else {
+                showPage("home");
+            }
+        })();
+
+
+        // ===== COURSE FILTERING =====
+
+        const courseCards = document.querySelectorAll(".course-card");
+        const filterButtons = document.querySelectorAll(".filter-btn");
+        const noCourses = document.getElementById("noCourses");
+
+        function filterCourses(category) {
+            let visibleCount = 0;
+
+            courseCards.forEach(function (card) {
+                const matches =
+                    category === "All" ||
+                    card.dataset.category === category;
+
+                card.classList.toggle("hidden", !matches);
+
+                if (matches) {
+                    visibleCount++;
+                }
+            });
+
+            noCourses.classList.toggle("hidden", visibleCount > 0);
+
+            filterButtons.forEach(function (button) {
+                const isActive = button.dataset.category === category;
+
+                button.classList.toggle("active", isActive);
+                button.setAttribute("aria-pressed", String(isActive));
+            });
+        }
+
+        filterButtons.forEach(function (button) {
+            button.addEventListener("click", function () {
+                filterCourses(button.dataset.category);
+            });
+        });
+
+
+        // ===== COURSE ENROLLMENT AND PROGRESS =====
+
+        const enrolledCourses = new Map();
+
+        const courseDetails = {
+            web: {
+                title: "Web Development",
+                instructor: "John Smith",
+                icon: "💻",
+                category: "Programming"
+            },
+            design: {
+                title: "UI/UX Design",
+                instructor: "Sarah Johnson",
+                icon: "🎨",
+                category: "Design"
+            },
+            marketing: {
+                title: "Digital Marketing",
+                instructor: "David Wilson",
+                icon: "📊",
+                category: "Business"
+            }
+        };
+
+        function enroll(button) {
+            const courseId = button.dataset.courseId;
+
+            // Prevent enrolling in the same course twice.
+            if (enrolledCourses.has(courseId)) {
+                return;
+            }
+
+            enrolledCourses.set(courseId, {
+                progress: 10
+            });
+
+            button.dataset.enrolled = "true";
+            button.textContent = "Enrolled ✓";
+            button.disabled = true;
+
+            button.setAttribute("aria-label",
+                "Enrolled in " + courseDetails[courseId].title);
+
+            updateCourseCard(courseId);
+            updateLearningDashboard();
+        }
+
+        function updateCourseCard(courseId) {
+            const card = document.querySelector(
+                '.course-card[data-course="' + courseId + '"]'
+            );
+
+            if (!card) {
+                return;
+            }
+
+            const enrollment = enrolledCourses.get(courseId);
+            const progress = enrollment ? enrollment.progress : 0;
+
+            card.querySelector(".progress-bar").style.width =
+                progress + "%";
+
+            card.querySelector(".progress-text").textContent =
+                progress + "%";
+
+            const button = card.querySelector(".enroll");
+
+            if (enrollment) {
+                button.textContent =
+                    progress === 100 ? "Completed ✓" : "Enrolled ✓";
+
+                button.disabled = true;
+                button.dataset.enrolled = "true";
+            }
+        }
+
+        function updateLearningDashboard() {
+            const count = enrolledCourses.size;
+            let totalProgress = 0;
+            let completed = 0;
+
+            enrolledCourses.forEach(function (enrollment) {
+                totalProgress += enrollment.progress;
+
+                if (enrollment.progress === 100) {
+                    completed++;
+                }
+            });
+
+            const average = count === 0
+                ? 0
+                : Math.round(totalProgress / count);
+
+            document.getElementById("count").textContent = count;
+            document.getElementById("averageProgress").textContent =
+                average + "%";
+            document.getElementById("completedCount").textContent =
+                completed;
+
+            const learningList = document.getElementById("learningList");
+            const emptyLearning = document.getElementById("emptyLearning");
+
+            learningList.replaceChildren();
+
+            emptyLearning.classList.toggle("hidden", count > 0);
+
+            enrolledCourses.forEach(function (enrollment, courseId) {
+                const details = courseDetails[courseId];
+
+                if (!details) {
+                    return;
+                }
+
+                const article = document.createElement("article");
+                article.className = "learning-card";
+
+                const icon = document.createElement("div");
+                icon.className = "learning-icon";
+                icon.textContent = details.icon;
+
+                const content = document.createElement("div");
+
+                const title = document.createElement("h3");
+                title.textContent = details.title;
+
+                const description = document.createElement("p");
+                description.textContent =
+                    details.category + " · Instructor: " +
+                    details.instructor;
+
+                const progressLabel = document.createElement("div");
+                progressLabel.className = "progress-label";
+
+                const label = document.createElement("span");
+                label.textContent = "Your progress";
+
+                const percentage = document.createElement("span");
+                percentage.textContent = enrollment.progress + "%";
+
+                progressLabel.append(label, percentage);
+
+                const progress = document.createElement("div");
+                progress.className = "progress";
+                progress.setAttribute("role", "progressbar");
+                progress.setAttribute("aria-valuemin", "0");
+                progress.setAttribute("aria-valuemax", "100");
+                progress.setAttribute(
+                    "aria-valuenow",
+                    String(enrollment.progress)
+                );
+                progress.setAttribute(
+                    "aria-label",
+                    details.title + " progress"
+                );
+
+                const bar = document.createElement("div");
+                bar.className = "progress-bar";
+                bar.style.width = enrollment.progress + "%";
+
+                progress.appendChild(bar);
+                content.append(title, description, progressLabel, progress);
+                article.append(icon, content);
+                learningList.appendChild(article);
+            });
+        }
+
+        // Attach enrollment events to each course button.
+        document.querySelectorAll(".enroll").forEach(function (button) {
+            button.addEventListener("click", function () {
+                enroll(button);
+            });
+        });
+
+        // Initialize the dashboard and course progress.
+        updateLearningDashboard();
+    </script>
+
+</body>
+</html>

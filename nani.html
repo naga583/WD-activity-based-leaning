@@ -1,0 +1,724 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Portfolio</title>
+
+<style>
+* { box-sizing: border-box; }
+
+:root {
+    --navy: #172554;
+    --blue: #4f46e5;
+    --teal: #0faaa0;
+    --light: #f5f7ff;
+    --text: #334155;
+    --muted: #64748b;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: var(--light);
+    color: var(--text);
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+header {
+    background: linear-gradient(120deg, #172554, #4338ca);
+    color: white;
+    padding: 18px 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+}
+
+.brand {
+    font-size: 20px;
+    font-weight: bold;
+    letter-spacing: .3px;
+}
+
+.brand span { color: #67e8f9; }
+
+header p {
+    margin: 2px 0 0;
+    font-size: 12px;
+    color: #dbeafe;
+}
+
+nav {
+    background: white;
+    padding: 8px 4%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 4px;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    box-shadow: 0 2px 12px #17255412;
+}
+
+nav a {
+    text-decoration: none;
+    color: #475569;
+    padding: 7px 11px;
+    border-radius: 7px;
+    font-size: 12px;
+    font-weight: bold;
+    transition: .2s;
+}
+
+nav a:hover, nav a.active {
+    background: #e9eaff;
+    color: var(--blue);
+}
+
+main {
+    width: min(960px, 94%);
+    margin: 22px auto;
+}
+
+.page { display: none; }
+
+.page.active {
+    display: block;
+    animation: appear .22s ease;
+}
+
+@keyframes appear {
+    from { opacity: 0; transform: translateY(5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.page-heading { margin-bottom: 14px; }
+
+.page-heading h1 {
+    color: var(--navy);
+    font-size: 23px;
+    margin: 0;
+    line-height: 1.3;
+}
+
+.page-heading p {
+    color: var(--muted);
+    font-size: 12px;
+    margin: 4px 0 0;
+}
+
+.hero {
+    background: linear-gradient(120deg, #e0e7ff, #ccfbf1);
+    border-radius: 13px;
+    padding: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    margin-bottom: 15px;
+}
+
+.hero-content { flex: 1; }
+
+.eyebrow {
+    color: #4338ca;
+    text-transform: uppercase;
+    letter-spacing: 1.3px;
+    font-size: 10px;
+    font-weight: bold;
+}
+
+.hero h1 {
+    color: var(--navy);
+    font-size: clamp(25px, 4vw, 35px);
+    line-height: 1.2;
+    margin: 7px 0;
+}
+
+.hero p {
+    max-width: 530px;
+    margin: 8px 0 15px;
+    font-size: 13px;
+}
+
+.avatar {
+    width: 94px;
+    height: 94px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #4338ca, #0faaa0);
+    color: white;
+    display: grid;
+    place-items: center;
+    font-size: 34px;
+    font-weight: bold;
+    border: 5px solid #ffffffa8;
+}
+
+.button {
+    display: inline-block;
+    background: var(--blue);
+    color: white;
+    text-decoration: none;
+    border: 0;
+    border-radius: 6px;
+    padding: 8px 13px;
+    font-size: 12px;
+    font-weight: bold;
+    cursor: pointer;
+    margin: 3px 4px 3px 0;
+}
+
+.button:hover { background: #3730a3; }
+
+.button.light {
+    background: white;
+    color: var(--blue);
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+    margin-bottom: 15px;
+}
+
+.grid.two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+.card {
+    background: white;
+    border: 1px solid #e8eaf4;
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0 3px 12px #17255408;
+    min-width: 0;
+}
+
+.card h3 {
+    color: var(--navy);
+    font-size: 14px;
+    margin: 0 0 5px;
+}
+
+.card p {
+    margin: 4px 0;
+    font-size: 12px;
+    color: var(--muted);
+}
+
+.icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    background: #eef2ff;
+    display: grid;
+    place-items: center;
+    font-size: 17px;
+    margin-bottom: 9px;
+}
+
+.section-title {
+    font-size: 16px;
+    color: var(--navy);
+    margin: 18px 0 10px;
+}
+
+.tag-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+    margin-top: 10px;
+}
+
+.tag {
+    background: #eef2ff;
+    color: #4338ca;
+    border-radius: 5px;
+    padding: 5px 9px;
+    font-size: 11px;
+    font-weight: bold;
+}
+
+.list {
+    padding-left: 18px;
+    margin: 7px 0;
+}
+
+.list li {
+    font-size: 12px;
+    margin: 6px 0;
+}
+
+.info-row {
+    padding: 9px 0;
+    border-bottom: 1px solid #edf0f5;
+    font-size: 12px;
+}
+
+.info-row:last-child { border-bottom: 0; }
+
+.info-row strong {
+    display: inline-block;
+    color: var(--navy);
+    min-width: 95px;
+}
+
+.highlight {
+    border-left: 3px solid var(--teal);
+}
+
+footer {
+    background: var(--navy);
+    color: #dbeafe;
+    text-align: center;
+    padding: 12px;
+    font-size: 11px;
+    margin-top: 24px;
+}
+
+footer p { margin: 0; }
+
+@media (max-width: 620px) {
+    header { padding: 15px 4%; }
+    .brand { font-size: 17px; }
+    nav { padding: 7px 3px; gap: 2px; }
+    nav a { padding: 6px 8px; font-size: 11px; }
+    main { width: 92%; margin: 15px auto; }
+    .hero { padding: 18px; gap: 8px; }
+    .avatar { width: 65px; height: 65px; font-size: 24px; }
+    .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 9px; }
+    .card { padding: 12px; }
+    .page-heading h1 { font-size: 21px; }
+}
+
+@media (max-width: 380px) {
+    .hero { align-items: flex-start; }
+    .avatar { width: 48px; height: 48px; font-size: 19px; }
+    .grid, .grid.two { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div>
+        <div class="brand">My<span>Portfolio.</span></div>
+        <p>Student · Learner · Future Professional</p>
+    </div>
+    <div style="font-size:12px">PERSONAL WEBSITE</div>
+</header>
+
+<nav aria-label="Main navigation">
+    <a href="#home" data-page="home" class="active">Home</a>
+    <a href="#about" data-page="about">About</a>
+    <a href="#education" data-page="education">Education</a>
+    <a href="#skills" data-page="skills">Skills</a>
+    <a href="#hobbies" data-page="hobbies">Hobbies</a>
+    <a href="#projects" data-page="projects">Projects</a>
+    <a href="#achievements" data-page="achievements">Achievements</a>
+    <a href="#resume" data-page="resume">Resume</a>
+    <a href="#contact" data-page="contact">Contact</a>
+</nav>
+
+<main>
+
+<!-- HOME -->
+<section id="home" class="page active">
+    <div class="hero">
+        <div class="hero-content">
+            <div class="eyebrow">Welcome to my portfolio</div>
+            <h1>Hello, I'm Your Name 👋</h1>
+            <p>
+                I am a motivated student who enjoys technology,
+                programming, creativity, and solving problems.
+                This portfolio highlights my journey, abilities,
+                interests, and goals.
+            </p>
+            <a href="#about" data-page="about" class="button">Discover My Story</a>
+            <a href="#projects" data-page="projects" class="button light">View Projects</a>
+        </div>
+        <div class="avatar" aria-label="Your initials">YN</div>
+    </div>
+
+    <h2 class="section-title">Explore My Portfolio</h2>
+    <div class="grid">
+        <div class="card">
+            <div class="icon">🎓</div>
+            <h3>Education</h3>
+            <p>My academic background, subjects, and learning journey.</p>
+            <a href="#education" data-page="education" class="button">Explore</a>
+        </div>
+        <div class="card">
+            <div class="icon">💻</div>
+            <h3>Technical Skills</h3>
+            <p>Programming languages and tools I am learning.</p>
+            <a href="#skills" data-page="skills" class="button">My Skills</a>
+        </div>
+        <div class="card">
+            <div class="icon">🚀</div>
+            <h3>My Projects</h3>
+            <p>Ideas and applications I have worked on.</p>
+            <a href="#projects" data-page="projects" class="button">See Projects</a>
+        </div>
+    </div>
+
+    <div class="grid two">
+        <div class="card highlight">
+            <h3>🎯 My Goal</h3>
+            <p>To strengthen my technical knowledge, gain practical experience, and build a rewarding career.</p>
+        </div>
+        <div class="card highlight">
+            <h3>✨ What I Value</h3>
+            <p>Continuous learning, creativity, teamwork, discipline, and solving real-world problems.</p>
+        </div>
+    </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="page">
+    <div class="page-heading">
+        <h1>About Me</h1>
+        <p>A little introduction to who I am and what inspires me.</p>
+    </div>
+    <div class="card">
+        <h3>👋 My Story</h3>
+        <p>
+            Hello! I'm <strong>Your Name</strong>, a student passionate
+            about technology and personal growth. I enjoy discovering
+            how websites and applications work and turning ideas into
+            practical projects.
+        </p>
+        <p>
+            I believe that consistent practice, curiosity, and learning
+            from mistakes are important steps toward success. I am
+            working to improve my technical and communication skills
+            while gaining more hands-on experience.
+        </p>
+    </div>
+    <h2 class="section-title">A Few Things About Me</h2>
+    <div class="grid">
+        <div class="card">
+            <div class="icon">💡</div>
+            <h3>My Interests</h3>
+            <p>Web development, software, digital creativity, and new technology.</p>
+        </div>
+        <div class="card">
+            <div class="icon">📈</div>
+            <h3>My Strengths</h3>
+            <p>Curiosity, patience, adaptability, and a willingness to learn.</p>
+        </div>
+        <div class="card">
+            <div class="icon">🌟</div>
+            <h3>My Ambition</h3>
+            <p>To become a skilled professional and create useful digital solutions.</p>
+        </div>
+    </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education" class="page">
+    <div class="page-heading">
+        <h1>Education</h1>
+        <p>My academic background and learning journey.</p>
+    </div>
+    <div class="grid">
+        <div class="card">
+            <div class="icon">🏛️</div>
+            <h3>College / Degree</h3>
+            <p>Your College Name</p>
+            <p>Your Degree and Specialization</p>
+            <p>Year: Your Study Period</p>
+        </div>
+        <div class="card">
+            <div class="icon">📚</div>
+            <h3>Higher Secondary</h3>
+            <p>Your School Name</p>
+            <p>Your Group or Stream</p>
+            <p>Year: Your Completion Year</p>
+        </div>
+        <div class="card">
+            <div class="icon">✏️</div>
+            <h3>School Education</h3>
+            <p>Your School Name</p>
+            <p>Foundational academic studies</p>
+            <p>Year: Your Completion Year</p>
+        </div>
+    </div>
+    <div class="card">
+        <h3>📖 My Learning Approach</h3>
+        <p>I combine classroom learning with practice, tutorials, small projects, and independent exploration to develop my knowledge.</p>
+    </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills" class="page">
+    <div class="page-heading">
+        <h1>Technical Skills</h1>
+        <p>Technologies and abilities I am developing.</p>
+    </div>
+    <div class="grid">
+        <div class="card">
+            <div class="icon">🌐</div>
+            <h3>Web Development</h3>
+            <p>Building and styling web pages.</p>
+            <div class="tag-list">
+                <span class="tag">HTML</span>
+                <span class="tag">CSS</span>
+                <span class="tag">JavaScript</span>
+            </div>
+        </div>
+        <div class="card">
+            <div class="icon">⌨️</div>
+            <h3>Programming</h3>
+            <p>Learning programming fundamentals and logic.</p>
+            <div class="tag-list">
+                <span class="tag">Python</span>
+                <span class="tag">Java</span>
+            </div>
+        </div>
+        <div class="card">
+            <div class="icon">🤝</div>
+            <h3>Personal Skills</h3>
+            <p>Communication, teamwork, time management, and problem-solving.</p>
+        </div>
+    </div>
+    <div class="card">
+        <h3>My Current Focus</h3>
+        <p>Practising coding regularly, creating responsive websites, debugging errors, and learning to write clear, maintainable code.</p>
+    </div>
+</section>
+
+<!-- HOBBIES -->
+<section id="hobbies" class="page">
+    <div class="page-heading">
+        <h1>My Hobbies</h1>
+        <p>Activities that inspire me and help me grow.</p>
+    </div>
+    <div class="grid">
+        <div class="card">
+            <div class="icon">📚</div>
+            <h3>Reading</h3>
+            <p>Discovering new ideas, knowledge, and perspectives through books and articles.</p>
+        </div>
+        <div class="card">
+            <div class="icon">🎵</div>
+            <h3>Music</h3>
+            <p>Listening to music to relax, refresh my mind, and stay motivated.</p>
+        </div>
+        <div class="card">
+            <div class="icon">🎮</div>
+            <h3>Gaming</h3>
+            <p>Enjoying games that encourage strategy, creativity, and quick thinking.</p>
+        </div>
+        <div class="card">
+            <div class="icon">💻</div>
+            <h3>Coding</h3>
+            <p>Experimenting with code and building small projects in my free time.</p>
+        </div>
+        <div class="card">
+            <div class="icon">🔍</div>
+            <h3>Exploring</h3>
+            <p>Learning about new tools, technology trends, and digital innovations.</p>
+        </div>
+        <div class="card">
+            <div class="icon">🌱</div>
+            <h3>Self-Improvement</h3>
+            <p>Developing better habits, communication, and learning skills.</p>
+        </div>
+    </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects" class="page">
+    <div class="page-heading">
+        <h1>My Projects</h1>
+        <p>Examples of my learning, ideas, and practical work.</p>
+    </div>
+    <div class="grid two">
+        <div class="card">
+            <div class="icon">🌐</div>
+            <h3>Personal Portfolio</h3>
+            <p>A responsive website to present my profile, education, skills, projects, and contact details.</p>
+            <div class="tag-list">
+                <span class="tag">HTML</span>
+                <span class="tag">CSS</span>
+                <span class="tag">JavaScript</span>
+            </div>
+        </div>
+        <div class="card">
+            <div class="icon">🗂️</div>
+            <h3>Student Management System</h3>
+            <p>A student project concept for organizing student details, academic records, and information efficiently.</p>
+            <div class="tag-list">
+                <span class="tag">Programming</span>
+                <span class="tag">Data Management</span>
+            </div>
+        </div>
+        <div class="card">
+            <div class="icon">🧪</div>
+            <h3>Practice Projects</h3>
+            <p>Small exercises to practise page layouts, interactive elements, and problem-solving.</p>
+        </div>
+        <div class="card">
+            <div class="icon">🚀</div>
+            <h3>Future Project Ideas</h3>
+            <p>Explore useful student tools, productivity applications, and simple web applications.</p>
+        </div>
+    </div>
+    <p style="font-size:11px;color:#64748b">
+        Replace these examples with your real projects, screenshots, and project links.
+    </p>
+</section>
+
+<!-- ACHIEVEMENTS -->
+<section id="achievements" class="page">
+    <div class="page-heading">
+        <h1>Achievements</h1>
+        <p>Milestones that reflect my learning and progress.</p>
+    </div>
+    <div class="grid">
+        <div class="card">
+            <div class="icon">🏅</div>
+            <h3>Course Completion</h3>
+            <p>Add the name of a programming or technical course you have completed.</p>
+        </div>
+        <div class="card">
+            <div class="icon">🎤</div>
+            <h3>Technical Events</h3>
+            <p>Showcase seminars, workshops, competitions, or technical events you attended.</p>
+        </div>
+        <div class="card">
+            <div class="icon">📜</div>
+            <h3>Certificates</h3>
+            <p>List your earned certificates, online training, and relevant qualifications.</p>
+        </div>
+    </div>
+    <div class="card">
+        <h3>What I Have Learned</h3>
+        <ul class="list">
+            <li>Practising consistently helps strengthen technical knowledge.</li>
+            <li>Building projects turns theory into practical experience.</li>
+            <li>Feedback and teamwork help improve results.</li>
+        </ul>
+    </div>
+</section>
+
+<!-- RESUME -->
+<section id="resume" class="page">
+    <div class="page-heading">
+        <h1>My Resume</h1>
+        <p>A quick overview of my academic and professional profile.</p>
+    </div>
+    <div class="card">
+        <div class="icon">📄</div>
+        <h3>Your Name</h3>
+        <p>Student | Aspiring Technology Professional</p>
+        <div class="info-row"><strong>Education</strong> Your Degree / Course</div>
+        <div class="info-row"><strong>Skills</strong> HTML, CSS, JavaScript, Python</div>
+        <div class="info-row"><strong>Projects</strong> Personal Portfolio, Student Management System</div>
+        <div class="info-row"><strong>Career Goal</strong> To develop technical expertise and practical experience</div>
+        <p style="margin-top:14px">Download your full resume for more details.</p>
+        <a href="resume.pdf" class="button" download>⬇ Download Resume</a>
+    </div>
+    <p style="font-size:11px;color:#64748b">
+        Put your actual PDF file named <strong>resume.pdf</strong> in the same folder as this HTML file.
+    </p>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="page">
+    <div class="page-heading">
+        <h1>Contact Me</h1>
+        <p>Let's connect, share ideas, and explore opportunities.</p>
+    </div>
+    <div class="grid two">
+        <div class="card">
+            <div class="icon">✉️</div>
+            <h3>Email</h3>
+            <p>yourname@example.com</p>
+            <a href="mailto:yourname@example.com" class="button">Send Email</a>
+        </div>
+        <div class="card">
+            <div class="icon">📱</div>
+            <h3>Phone</h3>
+            <p>Your Phone Number</p>
+            <p>Replace this with your preferred contact number.</p>
+        </div>
+        <div class="card">
+            <div class="icon">📍</div>
+            <h3>Location</h3>
+            <p>Your City, Your Country</p>
+        </div>
+        <div class="card">
+            <div class="icon">💬</div>
+            <h3>Open to Connections</h3>
+            <p>Interested in learning, project collaboration, and new opportunities.</p>
+        </div>
+    </div>
+</section>
+
+</main>
+
+<footer>
+    <p>© 2026 My Portfolio · Designed with care by Your Name</p>
+</footer>
+
+<script>
+const pages = document.querySelectorAll(".page");
+const links = document.querySelectorAll("nav a[data-page]");
+
+function showPage(id, addHistory = true) {
+    const target = document.getElementById(id);
+
+    if (!target || !target.classList.contains("page")) {
+        id = "home";
+    }
+
+    pages.forEach(page => {
+        const selected = page.id === id;
+        page.classList.toggle("active", selected);
+        page.hidden = !selected;
+    });
+
+    links.forEach(link => {
+        const selected = link.dataset.page === id;
+        link.classList.toggle("active", selected);
+
+        if (selected) {
+            link.setAttribute("aria-current", "page");
+        } else {
+            link.removeAttribute("aria-current");
+        }
+    });
+
+    if (addHistory && location.hash !== "#" + id) {
+        history.pushState({ page: id }, "", "#" + id);
+    }
+
+    window.scrollTo({ top: 0, behavior: "auto" });
+}
+
+document.addEventListener("click", event => {
+    const link = event.target.closest("a[data-page]");
+    if (!link) return;
+
+    event.preventDefault();
+    showPage(link.dataset.page);
+});
+
+window.addEventListener("popstate", () => {
+    showPage(location.hash.slice(1) || "home", false);
+});
+
+showPage(location.hash.slice(1) || "home", false);
+</script>
+
+</body>
+</html>
